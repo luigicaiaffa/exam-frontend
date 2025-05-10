@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DataContextProvider } from "./assets/contexts/DataContext";
 import DefaultLayout from "./assets/layout/DefaultLayout";
 import HomePage from "./assets/pages/HomePage";
+import CoursesIndex from "./assets/pages/Courses/CoursesIndex";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
           <Route element={<DefaultLayout />}>
             <Route path="/">
               <Route index element={<HomePage />} />
-              <Route path="courses" />
+              <Route path="courses" element={<CoursesIndex />} />
               <Route path="courses/:id" />
               <Route path="exams" />
               <Route path="exams/:id" />

@@ -34,13 +34,15 @@ export const DataContextProvider = ({ children }) => {
   }
 
   const [guestData, setGuestData] = useState({
-    guest: [],
+    guest: {
+      courses: [],
+    },
     averages: [],
   });
 
   useEffect(() => {
-    fetchData();
     fetchAverages();
+    fetchData();
   }, []);
 
   return (

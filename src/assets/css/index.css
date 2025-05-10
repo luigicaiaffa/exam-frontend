@@ -32,3 +32,27 @@ a {
 .lowerCardsExam::-webkit-scrollbar {
   display: thin;
 }
+
+/* # Courses Index */
+
+.courseCards {
+  height: 25rem;
+}
+
+.courseCards:has(.cardsTitle:hover) {
+  transform: scale(1.04);
+}
+
+.courseCardsExam {
+  max-height: 8rem;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
+.courseCardsExam::-webkit-scrollbar {
+  display: thin;
+}
+
+.addVote:hover {
+  transform: scale(1.1);
+}
