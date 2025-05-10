@@ -5,6 +5,7 @@ export const useDataContext = () => useContext(DataContext);
 
 export const DataContextProvider = ({ children }) => {
   const INDEX = import.meta.env.VITE_API_INDEX;
+  const AVERAGES = import.meta.env.VITE_API_AVERAGES;
 
   function fetchData() {
     fetch(INDEX, {
@@ -15,17 +16,31 @@ export const DataContextProvider = ({ children }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setGuestData({ ...guestData, guest: data });
+        setGuestData((guestData) => ({ ...guestData, guest: data }));
+      });
+  }
+
+  function fetchAverages() {
+    fetch(AVERAGES, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setGuestData((guestData) => ({ ...guestData, averages: data }));
       });
   }
 
   const [guestData, setGuestData] = useState({
     guest: [],
-    fetchData,
+    averages: [],
   });
 
   useEffect(() => {
     fetchData();
+    fetchAverages();
   }, []);
 
   return (

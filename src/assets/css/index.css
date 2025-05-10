@@ -1,0 +1,34 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* # Home Page */
+
+.homeUpperCards {
+  height: 19rem;
+}
+
+.upperCardsExam {
+  max-height: 12.5rem;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
+.upperCardsExam::-webkit-scrollbar {
+  display: thin;
+}
+
+.homeLowerCards {
+  height: 25rem;
+}
+
+.lowerCardsExam {
+  max-height: 13rem;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
+.lowerCardsExam::-webkit-scrollbar {
+  display: thin;
+}
