@@ -86,31 +86,33 @@ export default function HomePage() {
             <div className="upperCardsExam">
               <ul className="list-group list-group-flush">
                 {examsToDo.length !== 0 ? (
-                  examsToDo.map((exam) => {
-                    return (
-                      <li className="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
-                          <Link
-                            to={"/courses/" + getCourseFromExam(exam.id)?.id}
-                          >
-                            <i className="fa-solid fa-angle-right me-2"></i>
-                            {getCourseFromExam(exam.id)?.name || "Nome Corso"}
-                          </Link>
-                          <div className="text-body-secondary ms-3">
-                            {exam.date}
+                  examsToDo
+                    .sort((a, b) => new Date(a.date) - new Date(b.date))
+                    .map((exam) => {
+                      return (
+                        <li className="list-group-item d-flex justify-content-between align-items-center">
+                          <div>
+                            <Link
+                              to={"/courses/" + getCourseFromExam(exam.id)?.id}
+                            >
+                              <i className="fa-solid fa-angle-right me-2"></i>
+                              {getCourseFromExam(exam.id)?.name || "Nome Corso"}
+                            </Link>
+                            <div className="text-body-secondary ms-3">
+                              {exam.date}
+                            </div>
+
+                            <div className="text-body-secondary ms-3">
+                              {exam.location}
+                            </div>
                           </div>
 
-                          <div className="text-body-secondary ms-3">
-                            {exam.location}
-                          </div>
-                        </div>
-
-                        <a className="badge bg-warning addVote">
-                          <i className="fa-solid fa-plus"></i> Voto
-                        </a>
-                      </li>
-                    );
-                  })
+                          <a className="badge bg-warning addVote">
+                            <i className="fa-solid fa-plus"></i> Voto
+                          </a>
+                        </li>
+                      );
+                    })
                 ) : (
                   <div>
                     <ul className="list-group list-group-flush">
@@ -207,33 +209,35 @@ export default function HomePage() {
             <div className="lowerCardsExam py-2">
               <ul className="list-group list-group-flush">
                 {examsPassed.length !== 0 ? (
-                  examsPassed.map((exam) => {
-                    return (
-                      <li className="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
-                          <Link
-                            to={"/courses/" + getCourseFromExam(exam.id)?.id}
-                          >
-                            <i className="fa-solid fa-angle-right me-2"></i>
-                            {getCourseFromExam(exam.id)?.name || "Nome Corso"}
-                          </Link>
-                          <div className="text-body-secondary ms-3">
-                            {exam.date}
+                  examsPassed
+                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                    .map((exam) => {
+                      return (
+                        <li className="list-group-item d-flex justify-content-between align-items-center">
+                          <div>
+                            <Link
+                              to={"/courses/" + getCourseFromExam(exam.id)?.id}
+                            >
+                              <i className="fa-solid fa-angle-right me-2"></i>
+                              {getCourseFromExam(exam.id)?.name || "Nome Corso"}
+                            </Link>
+                            <div className="text-body-secondary ms-3">
+                              {exam.date}
+                            </div>
+
+                            <div className="text-body-secondary ms-3">
+                              {getCourseFromExam(exam.id)?.cfu || "CFU"} CFU
+                            </div>
                           </div>
 
-                          <div className="text-body-secondary ms-3">
-                            {getCourseFromExam(exam.id)?.cfu || "CFU"} CFU
+                          <div className="text-bg-success border-success px-2 py-1 rounded">
+                            {exam.grade.value === 30
+                              ? exam.grade.value + "L"
+                              : exam.grade.value}
                           </div>
-                        </div>
-
-                        <div className="text-bg-success border-success px-2 py-1 rounded">
-                          {exam.grade.value === 30
-                            ? exam.grade.value + "L"
-                            : exam.grade.value}
-                        </div>
-                      </li>
-                    );
-                  })
+                        </li>
+                      );
+                    })
                 ) : (
                   <li className="list-group-item card-subtitle text-body-secondary">
                     Nessun appello registrato
