@@ -7,7 +7,12 @@ export const DataContextProvider = ({ children }) => {
   const INDEX = import.meta.env.VITE_API_INDEX;
 
   function fetchData() {
-    fetch(INDEX)
+    fetch(INDEX, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setGuestData({ ...guestData, guest: data });
