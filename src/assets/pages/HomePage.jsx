@@ -16,11 +16,25 @@ export default function HomePage() {
         });
     });
 
+  function getCourseFromExam(examId) {
+    if (!guest.courses) return null;
+
+    for (const course of guest.courses) {
+      if (course.exams && course.exams.some((exam) => exam.id === examId)) {
+        return course;
+      }
+    }
+
+    return null; // Nessun corso trovato
+  }
+
+  console.log();
+
   return (
     <div className="container">
       <main>
         <div className="row g-4 my-4">
-          <div className="col-7">
+          <div className="col-12 col-lg-7">
             <div className="card homeUpperCards">
               <div className="card-body">
                 <div>
@@ -61,7 +75,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="col-5">
+          <div className="col-12 col-lg-5">
             <div className="card homeUpperCards">
               <div className="card-body">
                 <div className="d-flex justify-content-between card-title">
@@ -81,8 +95,9 @@ export default function HomePage() {
                           <li className="list-group-item d-flex justify-content-between align-items-center">
                             <div>
                               <Link to={"/courses/" + exam.id}>
-                                <i className="fa-solid fa-angle-right"></i>
-                                {/* {guest && getCourseFromExam(exam.id).name} */}
+                                <i className="fa-solid fa-angle-right me-2"></i>
+                                {getCourseFromExam(exam.id)?.name ||
+                                  "Nome Corso"}
                               </Link>
                               <div className="text-body-secondary ms-3">
                                 {exam.date}
@@ -113,10 +128,8 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="row g-4 mb-5">
-          <div className="col-5">
+          <div className="col-12 col-lg-5">
             <div className="card homeLowerCards">
               <div className="card-body">
                 <div className="d-flex justify-content-between card-title">
@@ -172,7 +185,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="col-7">
+          <div className="col-12 col-lg-7 ">
             <div className="card homeLowerCards">
               <div className="card-body">
                 <div className="d-flex justify-content-between card-title">
@@ -202,20 +215,23 @@ export default function HomePage() {
                           <li className="list-group-item d-flex justify-content-between align-items-center">
                             <div>
                               <Link to={"/courses"}>
-                                <i className="fa-solid fa-angle-right"></i>
-                                Nome Corso
+                                <i className="fa-solid fa-angle-right me-2"></i>
+                                {getCourseFromExam(exam.id)?.name ||
+                                  "Nome Corso"}
                               </Link>
                               <div className="text-body-secondary ms-3">
                                 {exam.date}
                               </div>
 
                               <div className="text-body-secondary ms-3">
-                                Cfu Corso
+                                {getCourseFromExam(exam.id)?.cfu || "CFU"} CFU
                               </div>
                             </div>
 
                             <div className="text-bg-success border-success px-2 py-1 rounded">
-                              28
+                              {exam.grade.value === 30
+                                ? exam.grade.value + "L"
+                                : exam.grade.value}
                             </div>
                           </li>
                         );
