@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDataContext } from "../contexts/DataContext";
 
-export default function HomePage() {
+export default function DashBoard() {
   const { guest, averages } = useDataContext();
 
   const examsToDo = [];
@@ -107,7 +107,7 @@ export default function HomePage() {
                             </div>
                           </div>
 
-                          <a className="badge bg-warning addVote">
+                          <a className="disabled btn btn-warning btn-sm badge">
                             <i className="fa-solid fa-plus"></i> Voto
                           </a>
                         </li>

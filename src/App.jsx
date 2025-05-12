@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DataContextProvider } from "./assets/contexts/DataContext";
 import DefaultLayout from "./assets/layout/DefaultLayout";
-import HomePage from "./assets/pages/HomePage";
 import CoursesIndex from "./assets/pages/Courses/CoursesIndex";
+import DashBoard from "./assets/pages/DashBoard";
+import CourseShow from "./assets/pages/Courses/CourseShow";
+import ExamsIndex from "./assets/pages/Exams/ExamsIndex";
 
 function App() {
   return (
@@ -11,10 +13,10 @@ function App() {
         <Routes>
           <Route element={<DefaultLayout />}>
             <Route path="/">
-              <Route index element={<HomePage />} />
+              <Route index element={<DashBoard />} />
               <Route path="courses" element={<CoursesIndex />} />
-              <Route path="courses/:id" />
-              <Route path="exams" />
+              <Route path="courses/:id" element={<CourseShow />} />
+              <Route path="exams" element={<ExamsIndex />} />
               <Route path="exams/:id" />
               <Route path="grades" />
               <Route path="user" />

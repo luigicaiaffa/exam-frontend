@@ -53,6 +53,18 @@ a {
   display: thin;
 }
 
-.addVote:hover {
-  transform: scale(1.1);
+.showExamLink:hover {
+  text-decoration: underline;
+}
+
+/* # Exams Index */
+
+.examLists {
+  max-height: 30rem;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
+.examLists::-webkit-scrollbar {
+  display: thin;
 }

@@ -7,7 +7,7 @@ export const DataContextProvider = ({ children }) => {
   const INDEX = import.meta.env.VITE_API_INDEX;
   const AVERAGES = import.meta.env.VITE_API_AVERAGES;
 
-  function fetchData() {
+  function fetchGuestData() {
     fetch(INDEX, {
       method: "GET",
       headers: {
@@ -20,7 +20,7 @@ export const DataContextProvider = ({ children }) => {
       });
   }
 
-  function fetchAverages() {
+  function fetchGuestAverages() {
     fetch(AVERAGES, {
       method: "GET",
       headers: {
@@ -41,8 +41,8 @@ export const DataContextProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    fetchAverages();
-    fetchData();
+    fetchGuestAverages();
+    fetchGuestData();
   }, []);
 
   return (
