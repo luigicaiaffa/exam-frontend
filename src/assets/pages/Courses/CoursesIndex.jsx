@@ -16,7 +16,7 @@ export default function CoursesIndex() {
           </Link>
           <Link onClick={() => navigate(-1)}>
             <button className="btn btn-sm btn-dark">
-              <i class="fa-solid fa-backward mx-2"></i>
+              <i className="fa-solid fa-backward mx-2"></i>
             </button>
           </Link>
         </div>

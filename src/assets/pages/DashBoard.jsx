@@ -90,7 +90,10 @@ export default function DashBoard() {
                     .sort((a, b) => new Date(a.date) - new Date(b.date))
                     .map((exam) => {
                       return (
-                        <li className="list-group-item d-flex justify-content-between align-items-center">
+                        <li
+                          key={exam.id}
+                          className="list-group-item d-flex justify-content-between align-items-center"
+                        >
                           <div>
                             <Link
                               to={"/courses/" + getCourseFromExam(exam.id)?.id}
@@ -213,7 +216,10 @@ export default function DashBoard() {
                     .sort((a, b) => new Date(b.date) - new Date(a.date))
                     .map((exam) => {
                       return (
-                        <li className="list-group-item d-flex justify-content-between align-items-center">
+                        <li
+                          key={exam.id}
+                          className="list-group-item d-flex justify-content-between align-items-center"
+                        >
                           <div>
                             <Link
                               to={"/courses/" + getCourseFromExam(exam.id)?.id}

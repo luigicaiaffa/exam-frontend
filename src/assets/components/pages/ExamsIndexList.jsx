@@ -17,52 +17,58 @@ export default function ExamsIndexList({ list, guest }) {
     <div className="examLists">
       <ul className="list-group list-group-flush">
         {list.lenght !== 0 ? (
-          list.map((el) => {
-            return (
-              <li
-                key={el.id}
-                className="list-group-item list-group-item-action"
-              >
-                <Link to={"/exams/" + el.id}>
-                  <div className="row">
-                    <div className="col-12 d-flex align-items-center justify-content-between">
-                      <div className="fw-semibold">Corso</div>
-                      <div>{getCourseFromExam(el.id)?.name}</div>
-                    </div>
-                    <div className="col-12 d-flex align-items-center justify-content-between">
-                      <div className="fw-semibold">Data</div>
-                      <div>{el.date}</div>
-                    </div>
-                    <div className="col-12 d-flex align-items-center justify-content-between">
-                      <div className="fw-semibold">Luogo</div>
-                      <div>{el.location}</div>
-                    </div>
-                    <div className="col-12 d-flex align-items-center justify-content-between">
-                      <div className="fw-semibold">Esito</div>
-                      <div>
-                        {el.grade && (
-                          <div className="badge bg-success">
-                            {el.grade.value}
-                          </div>
-                        )}
-                        {!el.grade && !el.isCancelled && (
-                          <div>
-                            <span className="disabled btn btn-warning btn-sm badge">
-                              <i className="fa-solid fa-plus me-2"></i>
-                              Voto
-                            </span>
-                          </div>
-                        )}
-                        {el.isCancelled && (
-                          <div className="badge bg-danger">Annullato</div>
-                        )}
+          list
+            .sort((a, b) => {
+              if (!a.isCancelled && !a.grade && !b.isCancelled && !b.grade)
+                return new Date(a.date) - new Date(b.date);
+              return new Date(b.date) - new Date(a.date);
+            })
+            .map((el) => {
+              return (
+                <li
+                  key={el.id}
+                  className="list-group-item list-group-item-action"
+                >
+                  <Link to={"/exams/" + el.id}>
+                    <div className="row">
+                      <div className="col-12 d-flex align-items-center justify-content-between">
+                        <div className="fw-semibold">Corso</div>
+                        <div>{getCourseFromExam(el.id)?.name}</div>
+                      </div>
+                      <div className="col-12 d-flex align-items-center justify-content-between">
+                        <div className="fw-semibold">Data</div>
+                        <div>{el.date}</div>
+                      </div>
+                      <div className="col-12 d-flex align-items-center justify-content-between">
+                        <div className="fw-semibold">Luogo</div>
+                        <div>{el.location}</div>
+                      </div>
+                      <div className="col-12 d-flex align-items-center justify-content-between">
+                        <div className="fw-semibold">Esito</div>
+                        <div>
+                          {el.grade && (
+                            <div className="badge bg-success">
+                              {el.grade.value}
+                            </div>
+                          )}
+                          {!el.grade && !el.isCancelled && (
+                            <div>
+                              <span className="disabled btn btn-warning btn-sm badge">
+                                <i className="fa-solid fa-plus me-2"></i>
+                                Voto
+                              </span>
+                            </div>
+                          )}
+                          {el.isCancelled && (
+                            <div className="badge bg-danger">Annullato</div>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </li>
-            );
-          })
+                  </Link>
+                </li>
+              );
+            })
         ) : (
           <li className="list-group-item">Nessun appello registrato</li>
         )}

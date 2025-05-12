@@ -5,6 +5,8 @@ import CoursesIndex from "./assets/pages/Courses/CoursesIndex";
 import DashBoard from "./assets/pages/DashBoard";
 import CourseShow from "./assets/pages/Courses/CourseShow";
 import ExamsIndex from "./assets/pages/Exams/ExamsIndex";
+import ExamShow from "./assets/pages/Exams/ExamShow";
+import GradesIndex from "./assets/pages/Grades/GradesIndex";
 
 function App() {
   return (
@@ -17,8 +19,8 @@ function App() {
               <Route path="courses" element={<CoursesIndex />} />
               <Route path="courses/:id" element={<CourseShow />} />
               <Route path="exams" element={<ExamsIndex />} />
-              <Route path="exams/:id" />
-              <Route path="grades" />
+              <Route path="exams/:id" element={<ExamShow />} />
+              <Route path="grades" element={<GradesIndex />} />
               <Route path="user" />
             </Route>
           </Route>

@@ -36,10 +36,9 @@ export default function CourseShow() {
           </button>
           <Link onClick={() => navigate(-1)}>
             <button className="btn btn-sm btn-dark">
-              <i class="fa-solid fa-backward mx-2"></i>
+              <i className="fa-solid fa-backward mx-2"></i>
             </button>
           </Link>
-          <div th:replace="~{fragments/fragments :: deleteCourseModal}"></div>
         </div>
       </div>
 
@@ -47,6 +46,7 @@ export default function CourseShow() {
 
       <div>
         <ul className="list-group list-group-flush">
+          {/* Course State */}
           <li className="list-group-item d-flex align-items-center justify-content-between my-2">
             <h5 className="fw-bold">Stato esame</h5>
             <div>
@@ -72,6 +72,8 @@ export default function CourseShow() {
               </span>
             </div>
           </li>
+
+          {/* Grade */}
           {course && course.isPassed && (
             <li className="list-group-item d-flex align-items-center justify-content-between my-2">
               <h5 className="fw-bold">Voto</h5>
@@ -87,14 +89,20 @@ export default function CourseShow() {
               </div>
             </li>
           )}
+
+          {/* CFU */}
           <li className="list-group-item d-flex align-items-center justify-content-between my-2">
             <h5 className="fw-bold">CFU</h5>
             <i className="fa-solid">{course && course.cfu}</i>
           </li>
+
+          {/* CourseYear */}
           <li className="list-group-item d-flex align-items-center justify-content-between my-2">
             <h5 className="fw-bold">Anno del corso</h5>
             <i className="fa-solid">{course && course.courseYear}</i>
           </li>
+
+          {/* Exams List */}
           <li className="list-group-item my-2">
             <div className="d-flex justify-content-between align-items-center">
               <h5 className="fw-bold">Appelli</h5>
@@ -106,7 +114,6 @@ export default function CourseShow() {
                 </div>
               )}
             </div>
-
             {course && course.exams.lenght !== 0 ? (
               <div th:if="${course.exams.size() != 0}">
                 <ul className="list-group list-group-flush">
