@@ -1,4 +1,6 @@
-export default function ExamsIndexList({ list }) {
+import { Link } from "react-router-dom";
+
+export default function ExamsIndexList({ list, guest }) {
   function getCourseFromExam(examId) {
     if (!guest.courses) return null;
 
@@ -12,53 +14,57 @@ export default function ExamsIndexList({ list }) {
   }
 
   return (
-    <div class="examLists">
-      <ul class="list-group list-group-flush">
+    <div className="examLists">
+      <ul className="list-group list-group-flush">
         {list.lenght !== 0 ? (
           list.map((el) => {
             return (
-              <li class="list-group-item list-group-item-action">
-                <a th:href="@{/exams/{id}(id = *{id})}">
-                  <div class="row">
-                    <div class="col-12 d-flex align-items-center justify-content-between">
-                      <div class="fw-semibold">Corso</div>
+              <li
+                key={el.id}
+                className="list-group-item list-group-item-action"
+              >
+                <Link to={"/exams/" + el.id}>
+                  <div className="row">
+                    <div className="col-12 d-flex align-items-center justify-content-between">
+                      <div className="fw-semibold">Corso</div>
                       <div>{getCourseFromExam(el.id)?.name}</div>
                     </div>
-                    <div class="col-12 d-flex align-items-center justify-content-between">
-                      <div class="fw-semibold">Data</div>
+                    <div className="col-12 d-flex align-items-center justify-content-between">
+                      <div className="fw-semibold">Data</div>
                       <div>{el.date}</div>
                     </div>
-                    <div class="col-12 d-flex align-items-center justify-content-between">
-                      <div class="fw-semibold">Luogo</div>
+                    <div className="col-12 d-flex align-items-center justify-content-between">
+                      <div className="fw-semibold">Luogo</div>
                       <div>{el.location}</div>
                     </div>
-                    <div class="col-12 d-flex align-items-center justify-content-between">
-                      <div class="fw-semibold">Esito</div>
-
-                      <div
-                        th:if="${!exam.isCancelled} and ${exam.grade != null}"
-                        class="badge bg-success"
-                      >
-                        {el.grade.value}
+                    <div className="col-12 d-flex align-items-center justify-content-between">
+                      <div className="fw-semibold">Esito</div>
+                      <div>
+                        {el.grade && (
+                          <div className="badge bg-success">
+                            {el.grade.value}
+                          </div>
+                        )}
+                        {!el.grade && !el.isCancelled && (
+                          <div>
+                            <span className="disabled btn btn-warning btn-sm badge">
+                              <i className="fa-solid fa-plus me-2"></i>
+                              Voto
+                            </span>
+                          </div>
+                        )}
+                        {el.isCancelled && (
+                          <div className="badge bg-danger">Annullato</div>
+                        )}
                       </div>
-                      <div th:if="${exam.isCancelled}" class="badge bg-danger">
-                        Annullato
-                      </div>
-                      <a
-                        th:if="${!exam.isCancelled} and ${exam.grade == null}"
-                        th:href="@{/exams/{id}/grade(id = *{id})}"
-                        class="badge bg-warning addVote"
-                      >
-                        Registra voto
-                      </a>
                     </div>
                   </div>
-                </a>
+                </Link>
               </li>
             );
           })
         ) : (
-          <li class="list-group-item">Nessun appello registrato</li>
+          <li className="list-group-item">Nessun appello registrato</li>
         )}
       </ul>
     </div>
