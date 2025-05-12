@@ -78,14 +78,14 @@ export default function CourseShow() {
             <li className="list-group-item d-flex align-items-center justify-content-between my-2">
               <h5 className="fw-bold">Voto</h5>
               <div>
-                {course.exams.lenght !== 0 &&
-                  course.exams.map((exam) => {
-                    exam.grade && (
+                {course.exams &&
+                  course.exams
+                    .filter((exam) => exam.grade && exam.grade.value)
+                    .map((exam) => (
                       <i key={exam.id} className="fa-solid">
                         {exam.grade.value}
                       </i>
-                    );
-                  })}
+                    ))}
               </div>
             </li>
           )}

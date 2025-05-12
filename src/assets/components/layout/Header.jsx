@@ -6,7 +6,7 @@ export default function Header() {
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            <i className="fa-solid fa-book-open fs-2"></i>
+            <i className="fa-solid fa-book-open fs-1"></i>
           </Link>
           <button
             className="navbar-toggler"
@@ -25,6 +25,11 @@ export default function Header() {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
+                <NavLink className="nav-link" to="/">
+                  Home
+                </NavLink>
+              </li>
+              <li className="nav-item">
                 <NavLink className="nav-link" to="/courses">
                   Corsi
                 </NavLink>
@@ -41,14 +46,22 @@ export default function Header() {
               </li>
             </ul>
 
-            <ul className="navbar-nav d-flex align-items-center">
+            <ul className="navbar-nav gap-2 flex-row justify-content-end">
               <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="/user"
+                <a
+                  className="btn btn-sm btn-dark"
+                  href="http://localhost:8080/login"
                 >
-                  <i className="fa-solid fa-user avatar"></i>
-                </NavLink>
+                  <i className="fa-solid fa-user me-2"></i>login
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="btn btn-sm btn-dark"
+                  href="http://localhost:8080/user/create"
+                >
+                  <i className="fa-solid fa-plus me-2"></i>Registrati
+                </a>
               </li>
             </ul>
           </div>
