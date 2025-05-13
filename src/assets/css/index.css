@@ -1,3 +1,6 @@
+/* !!! */
+/* # RESET */
+
 a {
   text-decoration: none;
   color: black;
@@ -11,10 +14,18 @@ body {
   background-color: #70a870 !important;
 }
 
-/* # Home Page */
+.list-group-item-action:hover {
+  background-color: #146c43 !important;
+}
 
+.list-group {
+  border-radius: 15px;
+}
 
-.homeTitle{
+/* !!! */
+/* # HOME PAGE */
+
+.homeTitle {
   border-bottom: 3px solid #198754;
 }
 
@@ -28,7 +39,7 @@ body {
 
 .list-group-item {
   background-color: #198754;
-  border-radius: 17px;
+  border-radius: 15px;
   border-bottom: 0px;
   margin-bottom: 5px;
 }
@@ -61,10 +72,25 @@ body {
   display: none;
 }
 
-/* # Courses Index */
+/* !!! */
+/* # COURSES INDEX */
+
+.pageTitle {
+  border-bottom: 3px solid #198754;
+}
+
+.coursesSection {
+  background-color: #70a870;
+  border: 5px solid #198754 !important;
+  box-shadow: 10px 12px 10px;
+  padding: 5px 10px;
+}
 
 .courseCards {
-  height: 25rem;
+  height: 26rem;
+  background-color: #70a870;
+  border: 5px solid #198754 !important;
+  box-shadow: 8px 8px 10px;
 }
 
 .courseCards:has(.cardsTitle:hover) {
@@ -74,18 +100,38 @@ body {
 .courseCardsExam {
   max-height: 8rem;
   overflow-y: scroll;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
 
 .courseCardsExam::-webkit-scrollbar {
-  display: thin;
+  display: none;
 }
 
-.showExamLink:hover {
-  text-decoration: underline;
+.cardsTitle {
+  border-radius: 0 !important;
+  background-color: #198754;
+  border-bottom: 0px;
 }
 
-/* # Exams Index */
+.cardsTitle:hover {
+  background-color: #146c43;
+}
+
+.cardsFooter {
+  background-color: #70a870;
+  border-top: 0px;
+}
+
+.isPassed {
+  background-color: #70a870;
+}
+
+.notPassed {
+  background-color: #bba241;
+}
+
+/* !!! */
+/* # EXAMS INDEX */
 
 .examLists {
   max-height: 30rem;
@@ -98,10 +144,13 @@ body {
 }
 
 .info {
-  /* primario */
-  color: #198754;
-  /* navbar */
-  background-color: #70a870 !important;
-  /* body */
-  background-color: #234435;
+  /* course cards exam list item */
+  border-radius: 15px;
+
+  /* course cards list item */
+  background-color: #70a870;
+
+  /* card-header e card-footer */
+  background-color: #70a870;
+  border-bottom: 2px solid #146c43;
 }

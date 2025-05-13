@@ -113,26 +113,31 @@ export default function DashBoard() {
                       return (
                         <li
                           key={exam.id}
-                          className="list-group-item d-flex justify-content-between align-items-center"
+                          className="list-group-item list-group-item-action"
                         >
-                          <div>
+                          <div className="d-flex justify-content-between align-items-center">
                             <Link
                               to={"/courses/" + getCourseFromExam(exam.id)?.id}
-                              className="text-light"
+                              className="text-light w-100"
                             >
-                              <i className="fa-solid fa-angle-right me-2"></i>
-                              {getCourseFromExam(exam.id)?.name || "Nome Corso"}
+                              <div>
+                                <i className="fa-solid fa-angle-right me-2"></i>
+                                {getCourseFromExam(exam.id)?.name ||
+                                  "Nome Corso"}
+                                <div className="text-light ms-3">
+                                  {exam.date}
+                                </div>
+
+                                <div className="text-light ms-3">
+                                  {exam.location}
+                                </div>
+                              </div>
                             </Link>
-                            <div className="text-light ms-3">{exam.date}</div>
 
-                            <div className="text-light ms-3">
-                              {exam.location}
-                            </div>
+                            <a className="disabled btn btn-light btn-sm badge">
+                              <i className="fa-solid fa-plus"></i> Voto
+                            </a>
                           </div>
-
-                          <a className="disabled btn btn-light btn-sm badge">
-                            <i className="fa-solid fa-plus"></i> Voto
-                          </a>
                         </li>
                       );
                     })
@@ -239,29 +244,28 @@ export default function DashBoard() {
                       return (
                         <li
                           key={exam.id}
-                          className="list-group-item d-flex justify-content-between align-items-center"
+                          className="list-group-item list-group-item-action"
                         >
-                          <div>
-                            <Link
-                              to={"/courses/" + getCourseFromExam(exam.id)?.id}
-                            >
+                          <Link
+                            to={"/courses/" + getCourseFromExam(exam.id)?.id}
+                            className="text-light d-flex justify-content-between align-items-center"
+                          >
+                            <div>
                               <i className="fa-solid fa-angle-right me-2"></i>
                               {getCourseFromExam(exam.id)?.name || "Nome Corso"}
-                            </Link>
-                            <div className="text-body-secondary ms-3">
-                              {exam.date}
+                              <div className="text-light ms-3">{exam.date}</div>
+
+                              <div className="text-light ms-3">
+                                {getCourseFromExam(exam.id)?.cfu || "CFU"} CFU
+                              </div>
                             </div>
 
-                            <div className="text-body-secondary ms-3">
-                              {getCourseFromExam(exam.id)?.cfu || "CFU"} CFU
+                            <div className="text-bg-light border-success px-2 py-1 rounded">
+                              {exam.grade.value === 30
+                                ? exam.grade.value + "L"
+                                : exam.grade.value}
                             </div>
-                          </div>
-
-                          <div className="text-bg-light border-success px-2 py-1 rounded">
-                            {exam.grade.value === 30
-                              ? exam.grade.value + "L"
-                              : exam.grade.value}
-                          </div>
+                          </Link>
                         </li>
                       );
                     })
