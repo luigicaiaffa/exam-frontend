@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import NotFound from "../NotFound";
 
 export default function CourseShow() {
   const [course, setCourse] = useState();
@@ -22,6 +23,8 @@ export default function CourseShow() {
   useEffect(() => {
     fetchCourseData();
   }, []);
+
+  if (!course) return <NotFound />;
 
   return (
     <>

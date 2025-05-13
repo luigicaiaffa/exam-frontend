@@ -9,8 +9,8 @@ export default function CoursesIndex() {
   const { courseName, courseYear } = location.state || "";
 
   const [filter, setFilter] = useState({
-    courseName: courseName,
-    courseYear: courseYear,
+    courseName: courseName || "",
+    courseYear: courseYear || "0",
   });
 
   const handleInputChange = (e) => {
@@ -39,8 +39,6 @@ export default function CoursesIndex() {
   const coursesYears =
     guest.courses &&
     Array.from(new Set(guest.courses.map((course) => course.courseYear)));
-
-  console.log(filteredCourses);
 
   return (
     <>

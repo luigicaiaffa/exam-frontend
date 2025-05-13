@@ -7,12 +7,11 @@ export default function DashBoard() {
 
   const [filter, setFilter] = useState({
     courseName: "",
-    courseYear: "",
+    courseYear: "0",
   });
 
   const handleInputChange = (e) => {
     setFilter({ ...filter, [e.target.name]: e.target.value });
-    console.log(filter);
   };
 
   const handleSubmit = (e) => {
@@ -46,47 +45,47 @@ export default function DashBoard() {
   const coursesYears =
     guest.courses &&
     Array.from(new Set(guest.courses.map((course) => course.courseYear)));
-  console.log(coursesYears);
 
   return (
     <div className="row g-4 my-4">
       <div className="col-12 col-lg-7">
         <div className="card homeUpperCards">
           <div className="card-body">
-            <div>
-              <h3 className="card-title fw-bold">
+            <div className="d-flex justify-content-between mb-3 homeTitle">
+              <h3 className="card-title fw-bold text-light">
                 {guest.name} {guest.surname}
               </h3>
-
-              <hr />
-
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">
-                  <span className="card-subtitle text-body-secondary">
-                    Numero di matricola
-                  </span>
-                  <div className="ms-2">- {guest.username}</div>
-                </li>
-                <li className="list-group-item">
-                  <span className="card-subtitle text-body-secondary">
-                    Corso di Laurea
-                  </span>
-                  <div className="ms-2">- {guest.degreeCourse}</div>
-                </li>
-                <li className="list-group-item">
-                  <span className="card-subtitle text-body-secondary">
-                    Totale CFU
-                  </span>
-                  {averages.totalCfu == 0 ? (
-                    <div className="ms-2">- {guest.totalCfu}</div>
-                  ) : (
-                    <div className="ms-2">
-                      - {averages.totalCfu} / {guest.totalCfu}
-                    </div>
-                  )}
-                </li>
-              </ul>
+              <div>
+                <span className="badge fs-5 bg-success">
+                  <i className="fa-solid fa-user"> </i>
+                </span>
+              </div>
             </div>
+
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item text-light">
+                <span className="card-subtitle text-light">
+                  Numero di matricola
+                </span>
+                <div className="ms-2">- {guest.username}</div>
+              </li>
+              <li className="list-group-item text-light">
+                <span className="card-subtitle text-light">
+                  Corso di Laurea
+                </span>
+                <div className="ms-2">- {guest.degreeCourse}</div>
+              </li>
+              <li className="list-group-item text-light">
+                <span className="card-subtitle text-light">Totale CFU</span>
+                {averages.totalCfu == 0 ? (
+                  <div className="ms-2">- {guest.totalCfu}</div>
+                ) : (
+                  <div className="ms-2">
+                    - {averages.totalCfu} / {guest.totalCfu}
+                  </div>
+                )}
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -94,14 +93,16 @@ export default function DashBoard() {
       <div className="col-12 col-lg-5">
         <div className="card homeUpperCards">
           <div className="card-body">
-            <div className="d-flex justify-content-between card-title">
-              <h4 className="fw-semibold mb-0">Prossimi esami</h4>
-              <div className="fs-6 badge bg-warning">
-                <i className="fa-solid fa-book-open"></i>
+            <div className="d-flex justify-content-between mb-3 homeTitle">
+              <h3 className="fw-semibold card-title text-light">
+                Prossimi esami
+              </h3>
+              <div>
+                <span className="fs-5 badge bg-success">
+                  <i className="fa-solid fa-book-open"></i>
+                </span>
               </div>
             </div>
-
-            <hr />
 
             <div className="upperCardsExam">
               <ul className="list-group list-group-flush">
@@ -117,20 +118,19 @@ export default function DashBoard() {
                           <div>
                             <Link
                               to={"/courses/" + getCourseFromExam(exam.id)?.id}
+                              className="text-light"
                             >
                               <i className="fa-solid fa-angle-right me-2"></i>
                               {getCourseFromExam(exam.id)?.name || "Nome Corso"}
                             </Link>
-                            <div className="text-body-secondary ms-3">
-                              {exam.date}
-                            </div>
+                            <div className="text-light ms-3">{exam.date}</div>
 
-                            <div className="text-body-secondary ms-3">
+                            <div className="text-light ms-3">
                               {exam.location}
                             </div>
                           </div>
 
-                          <a className="disabled btn btn-warning btn-sm badge">
+                          <a className="disabled btn btn-light btn-sm badge">
                             <i className="fa-solid fa-plus"></i> Voto
                           </a>
                         </li>
@@ -154,14 +154,14 @@ export default function DashBoard() {
       <div className="col-12 col-lg-5">
         <div className="card homeLowerCards">
           <div className="card-body">
-            <div className="d-flex justify-content-between card-title">
-              <h4 className="fw-semibold mb-0">Cerca corso</h4>
-              <div className="fs-6 badge bg-dark">
-                <i className="fa-solid fa-magnifying-glass"></i>
+            <div className="d-flex justify-content-between homeTitle mb-3">
+              <h3 className="fw-semibold card-title text-light">Cerca corso</h3>
+              <div>
+                <span className="fs-5 badge bg-success">
+                  <i className="fa-solid fa-magnifying-glass"></i>
+                </span>
               </div>
             </div>
-
-            <hr />
 
             <form onSubmit={handleSubmit}>
               <div className="input-group my-5">
@@ -196,7 +196,7 @@ export default function DashBoard() {
                 <Link
                   to={`/courses`}
                   state={filter}
-                  className="btn btn-sm btn-outline-secondary w-100"
+                  className="btn btn-success w-100"
                 >
                   Cerca corso
                 </Link>
@@ -209,21 +209,23 @@ export default function DashBoard() {
       <div className="col-12 col-lg-7 ">
         <div className="card homeLowerCards">
           <div className="card-body">
-            <div className="d-flex justify-content-between card-title">
-              <h4 className="fw-semibold mb-0">Percorso studente</h4>
-              <div className="fs-6 badge bg-success">
-                <i className="fa-solid fa-book"></i>
+            <div className="d-flex justify-content-between homeTitle mb-3">
+              <h3 className="fw-semibold card-title text-light">
+                Percorso studente
+              </h3>
+              <div>
+                <span className="fs-5 badge bg-success">
+                  <i className="fa-solid fa-book"></i>
+                </span>
               </div>
             </div>
 
-            <hr />
-
-            <div className="d-flex justify-content-between align-items-center pb-1 mb-2 border-bottom">
+            <div className="d-flex justify-content-between align-items-center pb-1 mb-2 border-bottom border-success">
               <h6>Media ponderata</h6>
               <span className="h5">{averages ? averages.weighted : 0}</span>
             </div>
 
-            <div className="d-flex justify-content-between align-items-center pb-1 mb-2 border-bottom">
+            <div className="d-flex justify-content-between align-items-center pb-1 mb-2 border-bottom border-success">
               <h6>Esami svolti</h6>
               <span className="h5">{examsPassed.length}</span>
             </div>
@@ -255,7 +257,7 @@ export default function DashBoard() {
                             </div>
                           </div>
 
-                          <div className="text-bg-success border-success px-2 py-1 rounded">
+                          <div className="text-bg-light border-success px-2 py-1 rounded">
                             {exam.grade.value === 30
                               ? exam.grade.value + "L"
                               : exam.grade.value}

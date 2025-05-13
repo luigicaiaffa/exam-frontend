@@ -3,34 +3,62 @@ a {
   color: black;
 }
 
+body {
+  background-color: #234435;
+}
+
+.navbar {
+  background-color: #70a870 !important;
+}
+
 /* # Home Page */
 
+
+.homeTitle{
+  border-bottom: 3px solid #198754;
+}
+
 .homeUpperCards {
-  height: 19rem;
+  background-color: #70a870;
+  border: 5px solid #198754 !important;
+  box-shadow: 10px 12px 10px;
+  height: 20rem;
+  padding: 5px 10px;
+}
+
+.list-group-item {
+  background-color: #198754;
+  border-radius: 17px;
+  border-bottom: 0px;
+  margin-bottom: 5px;
 }
 
 .upperCardsExam {
   max-height: 12.5rem;
   overflow-y: scroll;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
 
 .upperCardsExam::-webkit-scrollbar {
-  display: thin;
+  display: none;
 }
 
 .homeLowerCards {
-  height: 25rem;
+  height: 26rem;
+  background-color: #70a870;
+  border: 5px solid #198754 !important;
+  box-shadow: 10px 12px 10px;
+  padding: 5px 10px;
 }
 
 .lowerCardsExam {
   max-height: 13rem;
   overflow-y: scroll;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
 
 .lowerCardsExam::-webkit-scrollbar {
-  display: thin;
+  display: none;
 }
 
 /* # Courses Index */
@@ -67,4 +95,13 @@ a {
 
 .examLists::-webkit-scrollbar {
   display: thin;
+}
+
+.info {
+  /* primario */
+  color: #198754;
+  /* navbar */
+  background-color: #70a870 !important;
+  /* body */
+  background-color: #234435;
 }

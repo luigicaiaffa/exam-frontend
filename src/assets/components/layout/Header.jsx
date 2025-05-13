@@ -3,9 +3,9 @@ import { Link, NavLink } from "react-router-dom";
 export default function Header() {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-body-tertiary">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand text-success" to="/">
             <i className="fa-solid fa-book-open fs-1"></i>
           </Link>
           <button
@@ -49,7 +49,7 @@ export default function Header() {
             <ul className="navbar-nav gap-2 flex-row justify-content-end">
               <li className="nav-item">
                 <a
-                  className="btn btn-sm btn-dark"
+                  className="btn btn-sm btn-success"
                   href="http://localhost:8080/login"
                 >
                   <i className="fa-solid fa-user me-2"></i>login
@@ -57,7 +57,7 @@ export default function Header() {
               </li>
               <li className="nav-item">
                 <a
-                  className="btn btn-sm btn-dark"
+                  className="btn btn-sm btn-success"
                   href="http://localhost:8080/user/create"
                 >
                   <i className="fa-solid fa-plus me-2"></i>Registrati

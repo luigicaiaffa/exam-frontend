@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDataContext } from "../../contexts/DataContext";
+import NotFound from "../NotFound";
 
 export default function ExamShow() {
   const { guest } = useDataContext();
@@ -36,6 +37,8 @@ export default function ExamShow() {
 
     return null;
   }
+
+  if (!exam) return <NotFound />;
 
   return (
     <>
