@@ -7,6 +7,7 @@ import CourseShow from "./assets/pages/Courses/CourseShow";
 import ExamsIndex from "./assets/pages/Exams/ExamsIndex";
 import ExamShow from "./assets/pages/Exams/ExamShow";
 import GradesIndex from "./assets/pages/Grades/GradesIndex";
+import NotFound from "./assets/pages/NotFound";
 
 function App() {
   return (
@@ -21,8 +22,8 @@ function App() {
               <Route path="exams" element={<ExamsIndex />} />
               <Route path="exams/:id" element={<ExamShow />} />
               <Route path="grades" element={<GradesIndex />} />
-              <Route path="user" />
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>

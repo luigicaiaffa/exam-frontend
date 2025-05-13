@@ -5,6 +5,20 @@ import { useState } from "react";
 export default function DashBoard() {
   const { guest, averages } = useDataContext();
 
+  const [filter, setFilter] = useState({
+    courseName: "",
+    courseYear: "",
+  });
+
+  const handleInputChange = (e) => {
+    setFilter({ ...filter, [e.target.name]: e.target.value });
+    console.log(filter);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   const examsToDo = [];
   const examsPassed = [];
 
@@ -28,6 +42,11 @@ export default function DashBoard() {
 
     return null;
   }
+
+  const coursesYears =
+    guest.courses &&
+    Array.from(new Set(guest.courses.map((course) => course.courseYear)));
+  console.log(coursesYears);
 
   return (
     <div className="row g-4 my-4">
@@ -144,36 +163,43 @@ export default function DashBoard() {
 
             <hr />
 
-            <form method="GET">
+            <form onSubmit={handleSubmit}>
               <div className="input-group my-5">
                 <input
                   type="text"
-                  name="name"
+                  name="courseName"
                   placeholder="Cerca per nome"
                   className="form-control"
+                  onChange={handleInputChange}
+                  value={filter.courseName}
                 />
               </div>
 
               <div className="input-group my-5">
                 <select
                   className="form-select"
-                  aria-label="Default select example"
-                  name="year"
+                  name="courseYear"
+                  value={filter.courseYear}
+                  onChange={handleInputChange}
                 >
-                  <option selected th:value="0">
-                    Anno accademico
-                  </option>
-                  <option th:each="year : ${coursesYears}"></option>
+                  <option value="0">Anno accademico</option>
+                  {coursesYears &&
+                    coursesYears.map((year) => (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    ))}
                 </select>
               </div>
 
               <div className="my-5">
-                <button
-                  type="submit"
+                <Link
+                  to={`/courses`}
+                  state={filter}
                   className="btn btn-sm btn-outline-secondary w-100"
                 >
                   Cerca corso
-                </button>
+                </Link>
               </div>
             </form>
           </div>

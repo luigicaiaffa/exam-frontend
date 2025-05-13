@@ -114,10 +114,10 @@ export default function CourseShow() {
                 </div>
               )}
             </div>
-            {course && course.exams.lenght !== 0 ? (
+            {course && course.exams.length !== 0 ? (
               <div th:if="${course.exams.size() != 0}">
                 <ul className="list-group list-group-flush">
-                  {course.exams.lenght !== 0 &&
+                  {course.exams.length !== 0 &&
                     course.exams.map((exam) => {
                       return (
                         <li

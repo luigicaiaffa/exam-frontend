@@ -15,7 +15,6 @@ export default function CoursesIndex() {
 
   const handleInputChange = (e) => {
     setFilter({ ...filter, [e.target.name]: e.target.value });
-    console.log(filter);
   };
 
   const handleSubmit = (e) => {
@@ -40,7 +39,8 @@ export default function CoursesIndex() {
   const coursesYears =
     guest.courses &&
     Array.from(new Set(guest.courses.map((course) => course.courseYear)));
-  console.log(coursesYears);
+
+  console.log(filteredCourses);
 
   return (
     <>
@@ -101,7 +101,7 @@ export default function CoursesIndex() {
       <hr className="mb-4" />
 
       <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-5">
-        {filteredCourses && filteredCourses.lenght !== 0 ? (
+        {filteredCourses && filteredCourses.length !== 0 ? (
           filteredCourses
             .sort((a, b) => b.courseYear - a.courseYear)
             .sort((a, b) => a.isPassed - b.isPassed)
@@ -166,7 +166,7 @@ export default function CoursesIndex() {
 
                           <div className="courseCardsExam">
                             <ul className="list-group list-group-flush">
-                              {course.exams && course.exams.lenght !== 0 ? (
+                              {course.exams && course.exams.length !== 0 ? (
                                 course.exams
                                   .sort(
                                     (a, b) =>
@@ -238,7 +238,7 @@ export default function CoursesIndex() {
             })
         ) : (
           <div className="m-3">
-            <p>Nessun corso registrato</p>
+            <p>Nessun corso trovato</p>
           </div>
         )}
       </div>
