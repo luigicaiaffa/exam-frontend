@@ -1,8 +1,46 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDataContext } from "../../contexts/DataContext";
+import { useState } from "react";
 
 export default function CoursesIndex() {
   const { guest } = useDataContext();
+
+  const location = useLocation();
+  const { courseName, courseYear } = location.state || "";
+
+  const [filter, setFilter] = useState({
+    courseName: courseName,
+    courseYear: courseYear,
+  });
+
+  const handleInputChange = (e) => {
+    setFilter({ ...filter, [e.target.name]: e.target.value });
+    console.log(filter);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const filteredCourses =
+    guest.courses &&
+    guest.courses.filter((course) => {
+      const nameMatch = filter.courseName
+        ? course.name.toLowerCase().includes(filter.courseName.toLowerCase())
+        : true;
+
+      const yearMatch =
+        filter.courseYear && filter.courseYear !== "0"
+          ? course.courseYear === Number(filter.courseYear)
+          : true;
+
+      return nameMatch && yearMatch;
+    });
+
+  const coursesYears =
+    guest.courses &&
+    Array.from(new Set(guest.courses.map((course) => course.courseYear)));
+  console.log(coursesYears);
 
   return (
     <>
@@ -23,46 +61,48 @@ export default function CoursesIndex() {
       </div>
 
       <div>
-        {/* <form th:action="@{/courses}" method="GET">
+        <form onSubmit={handleSubmit}>
           <div className="input-group input-group-sm">
             <input
-              type="text"
-              th:value="${name}"
-              name="name"
               placeholder="Cerca per nome"
+              type="text"
               className="w-50 form-control"
+              name="courseName"
+              onChange={handleInputChange}
+              value={filter.courseName}
             />
 
             <select
               className="form-select"
-              aria-label="Default select example"
-              th:value="${year}"
-              name="year"
+              name="courseYear"
+              value={filter.courseYear}
+              onChange={handleInputChange}
             >
-              <option selected th:value="0">
-                Anno accademico
-              </option>
-              <option th:each="year : ${coursesYears}" th:value="${year}">
-                [[${year}]]
-              </option>
+              <option value="0">Anno accademico</option>
+              {coursesYears &&
+                coursesYears.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
             </select>
 
-            <button type="submit" className="btn btn-sm btn-dark">
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </button>
-            <a className="btn btn-sm btn-dark" th:href="@{/courses}">
+            <button
+              className="btn btn-sm btn-dark"
+              onClick={() => setFilter({ courseName: "", courseYear: "0" })}
+            >
               <i className="fa-solid fa-rotate-left"></i>
-            </a>
+            </button>
           </div>
           <div className="input-group input-group-sm"></div>
-        </form> */}
+        </form>
       </div>
 
       <hr className="mb-4" />
 
       <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-5">
-        {guest.courses && guest.courses.lenght !== 0 ? (
-          guest.courses
+        {filteredCourses && filteredCourses.lenght !== 0 ? (
+          filteredCourses
             .sort((a, b) => b.courseYear - a.courseYear)
             .sort((a, b) => a.isPassed - b.isPassed)
             .map((course) => {

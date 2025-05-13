@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDataContext } from "../contexts/DataContext";
+import { useState } from "react";
 
 export default function DashBoard() {
   const { guest, averages } = useDataContext();
@@ -143,46 +144,38 @@ export default function DashBoard() {
 
             <hr />
 
-            {/* <form th:action="@{/courses}" method="GET">
-                  <div className="input-group my-5">
-                    <label></label>
-                    <input
-                      type="text"
-                      th:value="${name}"
-                      name="name"
-                      placeholder="Cerca per nome"
-                      className="form-control"
-                    />
-                  </div>
+            <form method="GET">
+              <div className="input-group my-5">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Cerca per nome"
+                  className="form-control"
+                />
+              </div>
 
-                  <div className="input-group my-5">
-                    <select
-                      className="form-select"
-                      aria-label="Default select example"
-                      th:value="${year}"
-                      name="year"
-                    >
-                      <option selected th:value="0">
-                        Anno accademico
-                      </option>
-                      <option
-                        th:each="year : ${coursesYears}"
-                        th:value="${year}"
-                      >
-                        [[${year}]]
-                      </option>
-                    </select>
-                  </div>
+              <div className="input-group my-5">
+                <select
+                  className="form-select"
+                  aria-label="Default select example"
+                  name="year"
+                >
+                  <option selected th:value="0">
+                    Anno accademico
+                  </option>
+                  <option th:each="year : ${coursesYears}"></option>
+                </select>
+              </div>
 
-                  <div className="my-5">
-                    <button
-                      type="submit"
-                      className="btn btn-sm btn-outline-secondary w-100"
-                    >
-                      Cerca corso
-                    </button>
-                  </div>
-                </form> */}
+              <div className="my-5">
+                <button
+                  type="submit"
+                  className="btn btn-sm btn-outline-secondary w-100"
+                >
+                  Cerca corso
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

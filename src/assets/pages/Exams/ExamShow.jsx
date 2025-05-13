@@ -79,7 +79,7 @@ export default function ExamShow() {
             <h5 className="fw-bold">Esito</h5>
             <div>
               {exam && exam.grade && (
-                <div className="badge bg-success">{el.grade.value}</div>
+                <div className="badge bg-success">{exam.grade.value}</div>
               )}
               {exam && !exam.grade && !exam.isCancelled && (
                 <div>
