@@ -47,36 +47,36 @@ export default function DashBoard() {
     Array.from(new Set(guest.courses.map((course) => course.courseYear)));
 
   return (
-    <div className="row g-4 my-4">
+    <div className="row g-5">
       <div className="col-12 col-lg-7">
         <div className="card homeUpperCards">
           <div className="card-body">
             <div className="d-flex justify-content-between mb-3 homeTitle">
-              <h3 className="card-title fw-bold text-light">
+              <h3 className="card-title fw-bold">
                 {guest.name} {guest.surname}
               </h3>
               <div>
-                <span className="badge fs-5 bg-success">
+                {/* <span className="badge fs-5 bg-success">
                   <i className="fa-solid fa-user"> </i>
-                </span>
+                </span> */}
               </div>
             </div>
 
             <ul className="list-group list-group-flush">
-              <li className="list-group-item text-light">
-                <span className="card-subtitle text-light">
+              <li className="list-group-item">
+                <span className="card-subtitle text-secondary">
                   Numero di matricola
                 </span>
                 <div className="ms-2">- {guest.username}</div>
               </li>
-              <li className="list-group-item text-light">
-                <span className="card-subtitle text-light">
+              <li className="list-group-item">
+                <span className="card-subtitle text-secondary">
                   Corso di Laurea
                 </span>
                 <div className="ms-2">- {guest.degreeCourse}</div>
               </li>
-              <li className="list-group-item text-light">
-                <span className="card-subtitle text-light">Totale CFU</span>
+              <li className="list-group-item">
+                <span className="card-subtitle text-secondary">Totale CFU</span>
                 {averages.totalCfu == 0 ? (
                   <div className="ms-2">- {guest.totalCfu}</div>
                 ) : (
@@ -94,13 +94,11 @@ export default function DashBoard() {
         <div className="card homeUpperCards">
           <div className="card-body">
             <div className="d-flex justify-content-between mb-3 homeTitle">
-              <h3 className="fw-semibold card-title text-light">
-                Prossimi esami
-              </h3>
+              <h3 className="fw-semibold card-title">Prossimi esami</h3>
               <div>
-                <span className="fs-5 badge bg-success">
+                {/* <span className="fs-5 badge bg-success">
                   <i className="fa-solid fa-book-open"></i>
-                </span>
+                </span> */}
               </div>
             </div>
 
@@ -118,23 +116,21 @@ export default function DashBoard() {
                           <div className="d-flex justify-content-between align-items-center">
                             <Link
                               to={"/courses/" + getCourseFromExam(exam.id)?.id}
-                              className="text-light w-100"
+                              className=" w-100"
                             >
                               <div>
-                                <i className="fa-solid fa-angle-right me-2"></i>
-                                {getCourseFromExam(exam.id)?.name ||
-                                  "Nome Corso"}
-                                <div className="text-light ms-3">
-                                  {exam.date}
+                                <div className="fw-semibold">
+                                  <i className="fa-solid fa-angle-right me-2"></i>
+                                  {getCourseFromExam(exam.id)?.name ||
+                                    "Nome Corso"}
                                 </div>
+                                <div className="ms-3">{exam.date}</div>
 
-                                <div className="text-light ms-3">
-                                  {exam.location}
-                                </div>
+                                <div className=" ms-3">{exam.location}</div>
                               </div>
                             </Link>
 
-                            <a className="disabled btn btn-light btn-sm badge">
+                            <a className="disabled btn btn-warning badge">
                               <i className="fa-solid fa-plus"></i> Voto
                             </a>
                           </div>
@@ -160,11 +156,11 @@ export default function DashBoard() {
         <div className="card homeLowerCards">
           <div className="card-body">
             <div className="d-flex justify-content-between homeTitle mb-3">
-              <h3 className="fw-semibold card-title text-light">Cerca corso</h3>
+              <h3 className="fw-semibold card-title">Cerca corso</h3>
               <div>
-                <span className="fs-5 badge bg-success">
+                {/* <span className="fs-5 badge bg-success">
                   <i className="fa-solid fa-magnifying-glass"></i>
-                </span>
+                </span> */}
               </div>
             </div>
 
@@ -211,29 +207,31 @@ export default function DashBoard() {
         </div>
       </div>
 
-      <div className="col-12 col-lg-7 ">
+      <div className="col-12 col-lg-7">
         <div className="card homeLowerCards">
           <div className="card-body">
             <div className="d-flex justify-content-between homeTitle mb-3">
-              <h3 className="fw-semibold card-title text-light">
-                Percorso studente
-              </h3>
+              <h3 className="fw-semibold card-title">Percorso studente</h3>
               <div>
-                <span className="fs-5 badge bg-success">
+                {/* <span className="fs-5 badge bg-success">
                   <i className="fa-solid fa-book"></i>
-                </span>
+                </span> */}
               </div>
             </div>
 
-            <div className="d-flex justify-content-between align-items-center pb-1 mb-2 border-bottom border-success">
-              <h6>Media ponderata</h6>
-              <span className="h5">{averages ? averages.weighted : 0}</span>
-            </div>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                <h6 className="m-0 fw-semibold">Media ponderata</h6>
+                <span className="fs-5 m-0">
+                  {averages ? averages.weighted : 0}
+                </span>
+              </li>
 
-            <div className="d-flex justify-content-between align-items-center pb-1 mb-2 border-bottom border-success">
-              <h6>Esami svolti</h6>
-              <span className="h5">{examsPassed.length}</span>
-            </div>
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                <h6 className="m-0 fw-semibold">Esami svolti</h6>
+                <span className="fs-5 m-0">{examsPassed.length}</span>
+              </li>
+            </ul>
 
             <div className="lowerCardsExam py-2">
               <ul className="list-group list-group-flush">
@@ -248,19 +246,23 @@ export default function DashBoard() {
                         >
                           <Link
                             to={"/courses/" + getCourseFromExam(exam.id)?.id}
-                            className="text-light d-flex justify-content-between align-items-center"
+                            className=" d-flex justify-content-between align-items-center"
                           >
                             <div>
-                              <i className="fa-solid fa-angle-right me-2"></i>
-                              {getCourseFromExam(exam.id)?.name || "Nome Corso"}
-                              <div className="text-light ms-3">{exam.date}</div>
+                              <div className="fw-semibold">
+                                <i className="fa-solid fa-angle-right me-2"></i>
+                                {getCourseFromExam(exam.id)?.name ||
+                                  "Nome Corso"}
+                              </div>
 
-                              <div className="text-light ms-3">
+                              <div className=" ms-3">{exam.date}</div>
+
+                              <div className=" ms-3">
                                 {getCourseFromExam(exam.id)?.cfu || "CFU"} CFU
                               </div>
                             </div>
 
-                            <div className="text-bg-light border-success px-2 py-1 rounded">
+                            <div className="text-bg-success border-success px-3 py-1 rounded">
                               {exam.grade.value === 30
                                 ? exam.grade.value + "L"
                                 : exam.grade.value}

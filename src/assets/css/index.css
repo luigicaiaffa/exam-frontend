@@ -7,19 +7,30 @@ a {
 }
 
 body {
-  background-color: #234435;
+  background-color: #7c7c7c2a;
 }
 
 .navbar {
-  background-color: #70a870 !important;
+  background-color: #f8f9fa !important;
+  box-shadow: 0px 5px 10px #198754 !important;
 }
 
-.list-group-item-action:hover {
-  background-color: #146c43 !important;
+main {
+  margin: 9rem 0 5rem 0;
 }
 
 .list-group {
   border-radius: 15px;
+}
+
+.list-group-item {
+  border-radius: 15px;
+  border: 1px solid #7c7c7c2a;
+  margin-bottom: 5px;
+}
+
+.list-group-item-action:hover {
+  background-color: #7c7c7c2a !important;
 }
 
 /* !!! */
@@ -27,21 +38,16 @@ body {
 
 .homeTitle {
   border-bottom: 3px solid #198754;
+  color: #198754;
 }
 
 .homeUpperCards {
-  background-color: #70a870;
-  border: 5px solid #198754 !important;
-  box-shadow: 10px 12px 10px;
+  background-color: #f8f9fa;
+  border: 0px !important;
+  border-radius: 15px;
+  box-shadow: 0px 2px 12px #198754;
   height: 20rem;
   padding: 5px 10px;
-}
-
-.list-group-item {
-  background-color: #198754;
-  border-radius: 15px;
-  border-bottom: 0px;
-  margin-bottom: 5px;
 }
 
 .upperCardsExam {
@@ -56,9 +62,10 @@ body {
 
 .homeLowerCards {
   height: 26rem;
-  background-color: #70a870;
-  border: 5px solid #198754 !important;
-  box-shadow: 10px 12px 10px;
+  background-color: #f8f9fa;
+  border: 0px !important;
+  border-radius: 15px;
+  box-shadow: 0px 2px 12px #198754;
   padding: 5px 10px;
 }
 
@@ -77,24 +84,38 @@ body {
 
 .pageTitle {
   border-bottom: 3px solid #198754;
+  color: #198754;
 }
 
 .coursesSection {
-  background-color: #70a870;
-  border: 5px solid #198754 !important;
-  box-shadow: 10px 12px 10px;
+  background-color: #f8f9fa;
+  border: 0px !important;
+  border-radius: 15px;
+  box-shadow: 0px 2px 12px #198754;
   padding: 5px 10px;
 }
 
 .courseCards {
   height: 26rem;
-  background-color: #70a870;
-  border: 5px solid #198754 !important;
-  box-shadow: 8px 8px 10px;
+  background-color: #f8f9fa;
+  border: 0px !important;
+  border-radius: 15px;
+  box-shadow: 0px 2px 12px #198754;
 }
 
 .courseCards:has(.cardsTitle:hover) {
-  transform: scale(1.04);
+  transform: scale(1.05);
+}
+
+.cardsTitle {
+  background-color: #f8f9fa;
+  border-bottom: 3px solid #198754;
+  border-radius: 15px !important;
+  box-shadow: 0px 2px 4px #198754;
+}
+
+.cardsTitle:hover {
+  background-color: #7c7c7c2a !important;
 }
 
 .courseCardsExam {
@@ -107,27 +128,15 @@ body {
   display: none;
 }
 
-.cardsTitle {
-  border-radius: 0 !important;
-  background-color: #198754;
-  border-bottom: 0px;
-}
-
-.cardsTitle:hover {
-  background-color: #146c43;
+.courseCardsExam .list-group-item {
+  border-bottom: 1px solid #d4d4d4;
+  border-radius: 0px;
 }
 
 .cardsFooter {
-  background-color: #70a870;
+  background-color: #f8f9fa;
+  border-radius: 15px !important;
   border-top: 0px;
-}
-
-.isPassed {
-  background-color: #70a870;
-}
-
-.notPassed {
-  background-color: #bba241;
 }
 
 /* !!! */

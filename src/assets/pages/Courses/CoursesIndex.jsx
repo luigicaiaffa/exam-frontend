@@ -46,7 +46,7 @@ export default function CoursesIndex() {
         <div className="card-body">
           <div className="d-flex justify-content-between align-items-center my-3 pageTitle">
             <div>
-              <h1 className="fw-bold text-light">CORSI</h1>
+              <h1 className="fw-bold">CORSI</h1>
             </div>
             <div className="d-flex gap-2">
               <Link className="btn btn-sm btn-success disabled">
@@ -88,7 +88,7 @@ export default function CoursesIndex() {
                 </select>
 
                 <button
-                  className="btn btn-sm btn-success"
+                  className="btn btn-sm btn-outline-success"
                   onClick={() => setFilter({ courseName: "", courseYear: "0" })}
                 >
                   <i className="fa-solid fa-rotate-left"></i>
@@ -100,7 +100,7 @@ export default function CoursesIndex() {
         </div>
       </div>
 
-      <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-5">
+      <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-5 mb-5">
         {filteredCourses && filteredCourses.length !== 0 ? (
           filteredCourses
             .sort((a, b) => b.courseYear - a.courseYear)
@@ -112,23 +112,23 @@ export default function CoursesIndex() {
                     <div className="card-header cardsTitle">
                       <Link
                         to={"/courses/" + course.id}
-                        className="d-flex justify-content-between align-items-center text-light"
+                        className="d-flex justify-content-between align-items-center"
                       >
-                        <h5 className="fw-bold m-0">
+                        <h5 className="fw-bold m-0 text-success">
                           <i className="fa-solid fa-angle-right me-2"></i>
                           {course.name}
                         </h5>
                         <div>
                           {course.isOptional && (
-                            <span className="fs-6 badge text-light me-2">
+                            <span className="fs-6 badge text-secondary me-2">
                               <i className="fa-solid fa-tag"></i>
                             </span>
                           )}
                           <span
                             className={
                               course.isPassed
-                                ? "fs-6 badge px-3 isPassed"
-                                : "fs-6 badge px-3 notPassed"
+                                ? "fs-6 badge px-3 bg-success"
+                                : "fs-6 badge px-3 bg-warning"
                             }
                           >
                             <i
@@ -144,20 +144,20 @@ export default function CoursesIndex() {
                     </div>
                     <div className="card-body">
                       <ul className="list-group list-group-flush">
-                        <li className="list-group-item d-flex justify-content-between text-light">
+                        <li className="list-group-item d-flex justify-content-between">
                           <span className="fw-bold">CFU</span>
                           <span>{course.cfu}</span>
                         </li>
-                        <li className="list-group-item d-flex justify-content-between text-light">
+                        <li className="list-group-item d-flex justify-content-between">
                           <span className="fw-bold">Anno</span>
                           <span>{course.courseYear}</span>
                         </li>
-                        <li className="list-group-item text-light">
+                        <li className="list-group-item">
                           <div className="d-flex justify-content-between align-items-center mb-2">
                             <div className="fw-bold">Appelli</div>
                             <div>
                               {!course.isPassed && (
-                                <Link className="btn btn-sm btn-success disabled">
+                                <Link className="btn btn-sm btn-outline-success disabled">
                                   <i className="fa-solid fa-plus"></i> Appello
                                 </Link>
                               )}
@@ -175,7 +175,7 @@ export default function CoursesIndex() {
                                   .map((exam) => {
                                     return (
                                       <li
-                                        className="list-group-item d-flex justify-content-between align-items-center text-light"
+                                        className="list-group-item d-flex justify-content-between align-items-center"
                                         key={exam.id}
                                       >
                                         <div>
@@ -184,27 +184,27 @@ export default function CoursesIndex() {
                                           <span>{exam.location}</span>
                                           <br />
                                           {exam.grade && (
-                                            <span className="badge text-bg-light">
+                                            <span className="badge text-bg-success px-3">
                                               {exam.grade.value}
                                             </span>
                                           )}
                                           {!exam.grade && !exam.isCancelled && (
                                             <div>
-                                              <Link className="disabled btn btn-light btn-sm badge">
+                                              <Link className="disabled btn btn-warning btn-sm badge">
                                                 <i className="fa-solid fa-plus me-2"></i>
                                                 Voto
                                               </Link>
                                             </div>
                                           )}
                                           {exam.isCancelled && (
-                                            <span className="badge notPassed">
+                                            <span className="badge bg-danger">
                                               Annullato
                                             </span>
                                           )}
                                         </div>
                                         <div>
                                           <Link
-                                            className="btn btn-sm btn-outline-light"
+                                            className="btn btn-sm btn-outline-success"
                                             to={"/exams/" + exam.id}
                                           >
                                             <i className="fa-solid fa-eye"></i>
@@ -225,7 +225,7 @@ export default function CoursesIndex() {
                     </div>
 
                     <div className="card-footer cardsFooter d-flex justify-content-end gap-2">
-                      <Link className="btn btn-sm btn-light disabled px-3">
+                      <Link className="btn btn-sm btn-success disabled px-3">
                         <i className="fa-solid fa-pen"></i>
                       </Link>
                       <button className="btn btn-sm btn-danger disabled px-3">
