@@ -42,6 +42,16 @@ export default function DashBoard() {
     return null;
   }
 
+  function formatDate(dateString) {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return (
+      date.toLocaleDateString("it-IT") +
+      " " +
+      date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })
+    );
+  }
+
   const coursesYears =
     guest.courses &&
     Array.from(new Set(guest.courses.map((course) => course.courseYear)));
@@ -124,7 +134,9 @@ export default function DashBoard() {
                                   {getCourseFromExam(exam.id)?.name ||
                                     "Nome Corso"}
                                 </div>
-                                <div className="ms-3">{exam.date}</div>
+                                <div className="ms-3">
+                                  {formatDate(exam.date)}
+                                </div>
 
                                 <div className=" ms-3">{exam.location}</div>
                               </div>
@@ -255,7 +267,9 @@ export default function DashBoard() {
                                   "Nome Corso"}
                               </div>
 
-                              <div className=" ms-3">{exam.date}</div>
+                              <div className=" ms-3">
+                                {formatDate(exam.date)}
+                              </div>
 
                               <div className=" ms-3">
                                 {getCourseFromExam(exam.id)?.cfu || "CFU"} CFU

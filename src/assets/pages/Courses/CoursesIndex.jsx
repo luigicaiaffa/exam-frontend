@@ -36,6 +36,16 @@ export default function CoursesIndex() {
       return nameMatch && yearMatch;
     });
 
+  function formatDate(dateString) {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return (
+      date.toLocaleDateString("it-IT") +
+      " " +
+      date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })
+    );
+  }
+
   const coursesYears =
     guest.courses &&
     Array.from(new Set(guest.courses.map((course) => course.courseYear)));
@@ -179,7 +189,7 @@ export default function CoursesIndex() {
                                         key={exam.id}
                                       >
                                         <div>
-                                          <span>{exam.date}</span>
+                                          <span>{formatDate(exam.date)}</span>
                                           <br />
                                           <span>{exam.location}</span>
                                           <br />
@@ -225,7 +235,7 @@ export default function CoursesIndex() {
                     </div>
 
                     <div className="card-footer cardsFooter d-flex justify-content-end gap-2">
-                      <Link className="btn btn-sm btn-success disabled px-3">
+                      <Link className="btn btn-sm btn-outline-success disabled px-3">
                         <i className="fa-solid fa-pen"></i>
                       </Link>
                       <button className="btn btn-sm btn-danger disabled px-3">
