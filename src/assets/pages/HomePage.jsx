@@ -106,9 +106,9 @@ export default function HomePage() {
             <div className="d-flex justify-content-between mb-3 homeTitle">
               <h3 className="fw-semibold card-title">Prossimi esami</h3>
               <div>
-                {/* <span className="fs-5 badge bg-success">
-                  <i className="fa-solid fa-book-open"></i>
-                </span> */}
+                <Link to={"/exams"} className="btn-sm btn btn-outline-success">
+                  <i className="fa-solid fa-angles-right"></i>
+                </Link>
               </div>
             </div>
 
@@ -170,9 +170,12 @@ export default function HomePage() {
             <div className="d-flex justify-content-between homeTitle mb-3">
               <h3 className="fw-semibold card-title">Cerca corso</h3>
               <div>
-                {/* <span className="fs-5 badge bg-success">
-                  <i className="fa-solid fa-magnifying-glass"></i>
-                </span> */}
+                <Link
+                  to={"/courses"}
+                  className="btn-sm btn btn-outline-success"
+                >
+                  <i className="fa-solid fa-angles-right"></i>
+                </Link>
               </div>
             </div>
 
@@ -225,9 +228,9 @@ export default function HomePage() {
             <div className="d-flex justify-content-between homeTitle mb-3">
               <h3 className="fw-semibold card-title">Percorso studente</h3>
               <div>
-                {/* <span className="fs-5 badge bg-success">
-                  <i className="fa-solid fa-book"></i>
-                </span> */}
+                <Link to={"/grades"} className="btn-sm btn btn-outline-success">
+                  <i className="fa-solid fa-angles-right"></i>
+                </Link>
               </div>
             </div>
 

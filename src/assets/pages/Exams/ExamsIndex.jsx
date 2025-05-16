@@ -38,7 +38,7 @@ export default function ExamsIndex() {
             </div>
           </div>
 
-          <div className="accordion accordion-flush" id="accordionExample">
+          <div className="accordion" id="accordionExample">
             <div className="accordion-item">
               <h2 className="accordion-header">
                 <button
