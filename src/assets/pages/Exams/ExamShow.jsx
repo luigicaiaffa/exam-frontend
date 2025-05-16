@@ -5,7 +5,7 @@ import NotFound from "../NotFound";
 
 export default function ExamShow() {
   const { guest } = useDataContext();
-  
+
   const [exam, setExam] = useState();
 
   const { id: examId } = useParams();
@@ -105,7 +105,7 @@ export default function ExamShow() {
                   )}
                   {exam && !exam.grade && !exam.isCancelled && (
                     <div>
-                      <span className="disabled btn btn-warning btn-sm">
+                      <span className="disabled btn btn-warning btn-sm badge">
                         <i className="fa-solid fa-plus me-2"></i>
                         Voto
                       </span>
@@ -125,8 +125,7 @@ export default function ExamShow() {
                 <li className="list-group-item d-flex align-items-center justify-content-between my-2">
                   <div>
                     <a>
-                      <i className="fa-solid fa-plus"></i> Aggiungi una nota al
-                      tuo appello
+                      <i className="fa-solid fa-plus"></i> Aggiungi una nota
                     </a>
                   </div>
                 </li>

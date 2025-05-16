@@ -107,7 +107,6 @@ export default function CoursesIndex() {
                   <i className="fa-solid fa-rotate-left"></i>
                 </button>
               </div>
-              <div className="input-group input-group-sm"></div>
             </form>
           </div>
         </div>
@@ -227,9 +226,9 @@ export default function CoursesIndex() {
                                     );
                                   })
                               ) : (
-                                <div>
-                                  <p>Aggiungi un appello</p>
-                                </div>
+                                <li class="list-group-item">
+                                  Aggiungi un appello
+                                </li>
                               )}
                             </ul>
                           </div>
@@ -250,8 +249,10 @@ export default function CoursesIndex() {
               );
             })
         ) : (
-          <div className="m-3">
-            <p>Nessun corso trovato</p>
+          <div className="card coursesSection">
+            <div className="card-body">
+              <p>Nessun corso registrato</p>
+            </div>
           </div>
         )}
       </div>

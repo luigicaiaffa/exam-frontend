@@ -87,7 +87,6 @@ export default function ExamsIndex() {
               </div>
             </div>
 
-            <div></div>
             <div className="accordion-item">
               <h2 className="accordion-header">
                 <button

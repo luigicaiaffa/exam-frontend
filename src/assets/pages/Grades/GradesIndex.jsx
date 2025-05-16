@@ -118,9 +118,7 @@ export default function GradesIndex() {
                     );
                   })
                 ) : (
-                  <span className="list-group-item d-flex align-items-center justify-content-between py-3">
-                    Nessun voto registrato
-                  </span>
+                  <div>Nessun voto registrato</div>
                 )}
               </div>
             </div>

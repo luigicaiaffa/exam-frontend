@@ -4,7 +4,7 @@ import NotFound from "../NotFound";
 
 export default function CourseShow() {
   const [course, setCourse] = useState();
-  
+
   const { id: courseId } = useParams();
 
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ export default function CourseShow() {
                 <h5 className="fw-bold">Stato esame</h5>
                 <div>
                   {course && course.isOptional && (
-                    <span className="fs-6 badge bg-secondary me-2">
+                    <span className="fs-6 badge text-secondary me-2">
                       <i className="fa-solid fa-tag"></i>
                     </span>
                   )}
@@ -97,9 +97,9 @@ export default function CourseShow() {
                       course.exams
                         .filter((exam) => exam.grade && exam.grade.value)
                         .map((exam) => (
-                          <i key={exam.id} className="fa-solid">
+                          <span key={exam.id} className="fs-5">
                             {exam.grade.value}
-                          </i>
+                          </span>
                         ))}
                   </div>
                 </li>
@@ -108,13 +108,13 @@ export default function CourseShow() {
               {/* CFU */}
               <li className="list-group-item d-flex align-items-center justify-content-between my-2">
                 <h5 className="fw-bold">CFU</h5>
-                <i className="fa-solid">{course && course.cfu}</i>
+                <span className="fs-5">{course && course.cfu}</span>
               </li>
 
               {/* CourseYear */}
               <li className="list-group-item d-flex align-items-center justify-content-between my-2">
                 <h5 className="fw-bold">Anno del corso</h5>
-                <i className="fa-solid">{course && course.courseYear}</i>
+                <span className="fs-5">{course && course.courseYear}</span>
               </li>
 
               {/* Exams List */}
@@ -146,39 +146,36 @@ export default function CourseShow() {
                                   <span>{exam.location}</span>
                                   <br />
                                 </div>
-                                <div className="d-flex gap-2 align-items-center">
-                                  <Link
-                                    className="btn btn-sm btn-outline-success px-3"
-                                    to={"/exams/" + exam.id}
-                                  >
-                                    <i className="fa-solid fa-eye"></i>
-                                  </Link>
-                                  {exam.grade && (
-                                    <span className="fs-6 badge bg-success px-3">
-                                      {exam.grade.value}
+                                {exam.grade && (
+                                  <span className="badge bg-success px-3">
+                                    {exam.grade.value}
+                                  </span>
+                                )}
+                                {!exam.grade && !exam.isCancelled && (
+                                  <div>
+                                    <span className="disabled btn btn-warning btn-sm badge">
+                                      <i className="fa-solid fa-plus"></i> Voto
                                     </span>
-                                  )}
-                                  {!exam.grade && !exam.isCancelled && (
-                                    <div>
-                                      <span className="disabled btn btn-warning btn-sm">
-                                        <i className="fa-solid fa-plus me-2"></i>
-                                        Voto
-                                      </span>
-                                    </div>
-                                  )}
-                                  {exam.isCancelled && (
-                                    <span className="fs-6 badge bg-danger">
-                                      Annullato
-                                    </span>
-                                  )}
-                                </div>
+                                  </div>
+                                )}
+                                {exam.isCancelled && (
+                                  <span className="badge bg-danger">
+                                    Annullato
+                                  </span>
+                                )}
                               </div>
 
                               <div className="d-flex flex-column gap-1">
-                                <Link className="btn btn-sm btn-outline-success disabled px-3">
+                                <Link
+                                  className="btn btn-sm btn-outline-success px-2"
+                                  to={"/exams/" + exam.id}
+                                >
+                                  <i className="fa-solid fa-eye"></i>
+                                </Link>
+                                <Link className="btn btn-sm btn-outline-success disabled px-2">
                                   <i className="fa-solid fa-pen"></i>
                                 </Link>
-                                <button className="btn btn-sm btn-danger disabled px-3">
+                                <button className="btn btn-sm btn-outline-danger disabled px-2">
                                   <i className="fa-solid fa-trash"></i>
                                 </button>
                               </div>
@@ -189,7 +186,9 @@ export default function CourseShow() {
                   </div>
                 ) : (
                   <div>
-                    <p>Aggiungi un appello</p>
+                    <ul className="list-group list-group-flush">
+                      <li className="list-group-item">Aggiungi un appello</li>
+                    </ul>
                   </div>
                 )}
               </li>
