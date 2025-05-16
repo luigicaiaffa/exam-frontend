@@ -22,47 +22,96 @@ export default function ExamsIndex() {
 
   return (
     <>
-      <div className="d-flex justify-content-between align-items-center mt-5 mb-3">
-        <div>
-          <h1 className="fw-bold">APPELLI</h1>
+      <div className="card examsCard">
+        <div className="card-body p-5">
+          <div className="d-flex justify-content-between align-items-center pageTitle mb-5">
+            <div>
+              <h1 className="fw-bold">APPELLI</h1>
+            </div>
+            <div>
+              <Link onClick={() => navigate(-1)}>
+                <button className="btn btn-sm btn-success">
+                  <i className="fa-solid fa-backward mx-2"></i>
+                </button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="accordion accordion-flush" id="accordionExample">
+            <div className="accordion-item">
+              <h2 className="accordion-header">
+                <button
+                  className="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  <h5 className="fw-bold">Prossimi appelli</h5>
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                className="accordion-collapse collapse show"
+                data-bs-parent="#accordionExample"
+              >
+                <div className="accordion-body">
+                  <ExamsIndexList list={examsToDo} guest={guest} />
+                </div>
+              </div>
+            </div>
+
+            <div className="accordion-item">
+              <h2 className="accordion-header">
+                <button
+                  className="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  <h5 className="fw-bold">Appelli con voto</h5>
+                </button>
+              </h2>
+              <div
+                id="collapseTwo"
+                className="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div className="accordion-body">
+                  <ExamsIndexList list={examsPassed} guest={guest} />
+                </div>
+              </div>
+            </div>
+
+            <div></div>
+            <div className="accordion-item">
+              <h2 className="accordion-header">
+                <button
+                  className="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  <h5 className="fw-bold">Appelli annullati</h5>
+                </button>
+              </h2>
+              <div
+                id="collapseThree"
+                className="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div className="accordion-body">
+                  <ExamsIndexList list={examsCancelled} guest={guest} />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <Link onClick={() => navigate(-1)}>
-            <button className="btn btn-sm btn-dark">
-              <i className="fa-solid fa-backward mx-2"></i>
-            </button>
-          </Link>
-        </div>
-      </div>
-
-      <hr />
-
-      <div className="mb-5">
-        <div>
-          <h5 className="fw-bold">Prossimi appelli</h5>
-        </div>
-
-        <ExamsIndexList list={examsToDo} guest={guest} />
-      </div>
-
-      <hr />
-
-      <div className="mb-5">
-        <div>
-          <h5 className="fw-bold">Appelli con voto</h5>
-        </div>
-
-        <ExamsIndexList list={examsPassed} guest={guest} />
-      </div>
-
-      <hr />
-
-      <div className="mb-5">
-        <div>
-          <h5 className="fw-bold">Appelli annullati</h5>
-        </div>
-
-        <ExamsIndexList list={examsCancelled} guest={guest} />
       </div>
     </>
   );

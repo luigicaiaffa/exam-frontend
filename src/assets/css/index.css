@@ -146,6 +146,32 @@ main {
 /* !!! */
 /* # EXAMS INDEX */
 
+.examsCard {
+  background-color: #f8f9fa;
+  border: 0px !important;
+  border-radius: 15px;
+  box-shadow: 0px 2px 12px #198754;
+}
+
+.examsCard .accordion-body {
+  background-color: #f8f9fa;
+}
+
+.examsCard .accordion-button {
+  color: #198754;
+  background-color: #ffffff;
+}
+
+.examsCard .accordion-button:not(.collapsed) {
+  color: #198754;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 12px #198754;
+}
+
+.examsCard .accordion-button:focus {
+  box-shadow: 0px 2px 12px #198754;
+}
+
 .examLists {
   max-height: 30rem;
   overflow-y: scroll;
