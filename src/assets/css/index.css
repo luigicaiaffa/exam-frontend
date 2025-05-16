@@ -173,23 +173,11 @@ main {
 }
 
 .examLists {
-  max-height: 30rem;
+  max-height: 33rem;
   overflow-y: scroll;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
 
 .examLists::-webkit-scrollbar {
-  display: thin;
-}
-
-.info {
-  /* course cards exam list item */
-  border-radius: 15px;
-
-  /* course cards list item */
-  background-color: #70a870;
-
-  /* card-header e card-footer */
-  background-color: #70a870;
-  border-bottom: 2px solid #146c43;
+  display: none;
 }

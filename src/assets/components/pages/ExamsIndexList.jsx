@@ -13,6 +13,16 @@ export default function ExamsIndexList({ list, guest }) {
     return null;
   }
 
+  function formatDate(dateString) {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return (
+      date.toLocaleDateString("it-IT") +
+      " " +
+      date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })
+    );
+  }
+
   return (
     <div className="examLists">
       <ul className="list-group list-group-flush">
@@ -37,7 +47,7 @@ export default function ExamsIndexList({ list, guest }) {
                       </div>
                       <div className="col-12 d-flex align-items-center justify-content-between">
                         <div className="fw-semibold">Data</div>
-                        <div>{el.date}</div>
+                        <div>{formatDate(el.date)}</div>
                       </div>
                       <div className="col-12 d-flex align-items-center justify-content-between">
                         <div className="fw-semibold">Luogo</div>
@@ -47,7 +57,7 @@ export default function ExamsIndexList({ list, guest }) {
                         <div className="fw-semibold">Esito</div>
                         <div>
                           {el.grade && (
-                            <div className="badge bg-success">
+                            <div className="badge bg-success px-3">
                               {el.grade.value}
                             </div>
                           )}

@@ -22,6 +22,16 @@ export default function ExamShow() {
       .then((data) => setExam(data));
   }
 
+  function formatDate(dateString) {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return (
+      date.toLocaleDateString("it-IT") +
+      " " +
+      date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })
+    );
+  }
+
   useEffect(() => {
     fetchExamData();
   }, []);
@@ -42,77 +52,85 @@ export default function ExamShow() {
 
   return (
     <>
-      <div className="mt-5 d-flex justify-content-between align-items-center">
-        <h1 className="fw-bold">APPELLO</h1>
-        <div className="d-flex gap-2">
-          <Link className="btn btn-sm btn-dark disabled">
-            <i className="fa-solid fa-pen"></i>
-          </Link>
-          <button className="btn btn-sm btn-danger disabled">
-            <i className="fa-solid fa-trash"></i>
-          </button>
-          <Link onClick={() => navigate(-1)}>
-            <button className="btn btn-sm btn-dark">
-              <i className="fa-solid fa-backward mx-2"></i>
-            </button>
-          </Link>
-        </div>
-      </div>
-      <hr />
-      <div>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item list-group-item-action my-2">
-            <a
-              th:href="@{/courses/{id}(id = *{course.id})}"
-              className="d-flex align-items-center justify-content-between"
-            >
-              <h5 className="fw-bold">Corso</h5>
-              <div>{getCourseFromExam(exam && exam.id)?.name}</div>
-            </a>
-          </li>
-          <li className="list-group-item d-flex align-items-center justify-content-between my-2">
-            <h5 className="fw-bold">Data</h5>
-            <div>{exam && exam.date}</div>
-          </li>
-          <li className="list-group-item d-flex align-items-center justify-content-between my-2">
-            <h5 className="fw-bold">Luogo</h5>
-            <div>{exam && exam.location}</div>
-          </li>
-          <li className="list-group-item d-flex align-items-center justify-content-between my-2">
-            <h5 className="fw-bold">Esito</h5>
-            <div>
-              {exam && exam.grade && (
-                <div className="badge bg-success">{exam.grade.value}</div>
-              )}
-              {exam && !exam.grade && !exam.isCancelled && (
-                <div>
-                  <span className="disabled btn btn-warning btn-sm badge">
-                    <i className="fa-solid fa-plus me-2"></i>
-                    Voto
-                  </span>
-                </div>
-              )}
-              {exam && exam.isCancelled && (
-                <div className="badge bg-danger">Annullato</div>
-              )}
+      <div className="card examsCard">
+        <div className="card-body p-5">
+          <div className="d-flex justify-content-between align-items-center pageTitle mb-4">
+            <h1 className="fw-bold">APPELLO</h1>
+            <div className="d-flex gap-2">
+              <Link className="btn btn-sm btn-outline-success px-3 disabled">
+                <i className="fa-solid fa-pen"></i>
+              </Link>
+              <button className="btn btn-sm btn-danger px-3 disabled">
+                <i className="fa-solid fa-trash"></i>
+              </button>
+              <Link onClick={() => navigate(-1)}>
+                <button className="btn btn-sm btn-success px-3">
+                  <i className="fa-solid fa-backward"></i>
+                </button>
+              </Link>
             </div>
-          </li>
-          {exam && exam.notes ? (
-            <li className="list-group-item my-2">
-              <h5 className="fw-bold">Note</h5>
-              <div className="ms-4">{exam && exam.notes}</div>
-            </li>
-          ) : (
-            <li className="list-group-item d-flex align-items-center justify-content-between my-2">
-              <div>
-                <a>
-                  <i className="fa-solid fa-plus"></i> Aggiungi una nota al tuo
-                  appello
-                </a>
-              </div>
-            </li>
-          )}
-        </ul>
+          </div>
+
+          <div>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item list-group-item-action my-2">
+                <Link
+                  to={"/courses/" + getCourseFromExam(exam && exam.id)?.id}
+                  className="d-flex align-items-center justify-content-between"
+                >
+                  <h5 className="fw-bold">Corso</h5>
+                  <div className="fs-5">
+                    {getCourseFromExam(exam && exam.id)?.name}
+                  </div>
+                </Link>
+              </li>
+              <li className="list-group-item d-flex align-items-center justify-content-between my-2">
+                <h5 className="fw-bold">Data</h5>
+                <div className="fs-5">{exam && formatDate(exam.date)}</div>
+              </li>
+              <li className="list-group-item d-flex align-items-center justify-content-between my-2">
+                <h5 className="fw-bold">Luogo</h5>
+                <div className="fs-5">{exam && exam.location}</div>
+              </li>
+              <li className="list-group-item d-flex align-items-center justify-content-between my-2">
+                <h5 className="fw-bold">Esito</h5>
+                <div className="fs-5">
+                  {exam && exam.grade && (
+                    <div className="badge bg-success px-3">
+                      {exam.grade.value}
+                    </div>
+                  )}
+                  {exam && !exam.grade && !exam.isCancelled && (
+                    <div>
+                      <span className="disabled btn btn-warning btn-sm">
+                        <i className="fa-solid fa-plus me-2"></i>
+                        Voto
+                      </span>
+                    </div>
+                  )}
+                  {exam && exam.isCancelled && (
+                    <div className="badge bg-danger">Annullato</div>
+                  )}
+                </div>
+              </li>
+              {exam && exam.notes ? (
+                <li className="list-group-item my-2">
+                  <h5 className="fw-bold">Note</h5>
+                  <div className="ms-4">{exam && exam.notes}</div>
+                </li>
+              ) : (
+                <li className="list-group-item d-flex align-items-center justify-content-between my-2">
+                  <div>
+                    <a>
+                      <i className="fa-solid fa-plus"></i> Aggiungi una nota al
+                      tuo appello
+                    </a>
+                  </div>
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
       </div>
     </>
   );
