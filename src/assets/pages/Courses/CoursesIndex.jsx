@@ -1,11 +1,14 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDataContext } from "../../contexts/DataContext";
 import { useState } from "react";
 
 export default function CoursesIndex() {
   const { guest } = useDataContext();
 
+  const navigate = useNavigate();
+
   const location = useLocation();
+
   const { courseName, courseYear } = location.state || "";
 
   const [filter, setFilter] = useState({

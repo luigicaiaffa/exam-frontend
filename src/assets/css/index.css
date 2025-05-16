@@ -181,3 +181,20 @@ main {
 .examLists::-webkit-scrollbar {
   display: none;
 }
+
+/* !!! */
+/* # GRADES INDEX */
+
+.gradesCard {
+  background-color: #f8f9fa;
+  border: 0px !important;
+  border-radius: 15px;
+  box-shadow: 0px 2px 12px #198754;
+}
+
+.averages {
+  color: #198754;
+  background-color: #ffffff;
+  border: 0px !important;
+  box-shadow: 0px 2px 5px #198754;
+}

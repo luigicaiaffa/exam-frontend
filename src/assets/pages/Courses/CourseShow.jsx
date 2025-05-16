@@ -4,7 +4,9 @@ import NotFound from "../NotFound";
 
 export default function CourseShow() {
   const [course, setCourse] = useState();
+  
   const { id: courseId } = useParams();
+
   const navigate = useNavigate();
 
   const url = import.meta.env.VITE_API_COURSE_INDEX + "/" + courseId;
@@ -39,7 +41,7 @@ export default function CourseShow() {
   return (
     <>
       <div className="card courseCards h-100">
-        <div className="card-body p-5">
+        <div className="card-body p-4">
           <div className="d-flex justify-content-between align-items-center pageTitle mb-4">
             <h1 className="fw-bold">{course && course.name}</h1>
             <div className="d-flex gap-2">

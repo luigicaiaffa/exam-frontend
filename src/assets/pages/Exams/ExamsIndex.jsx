@@ -4,6 +4,7 @@ import { useDataContext } from "../../contexts/DataContext";
 
 export default function ExamsIndex() {
   const { guest } = useDataContext();
+  
   const navigate = useNavigate();
 
   const examsToDo = [];
@@ -23,7 +24,7 @@ export default function ExamsIndex() {
   return (
     <>
       <div className="card examsCard">
-        <div className="card-body p-5">
+        <div className="card-body p-4">
           <div className="d-flex justify-content-between align-items-center pageTitle mb-5">
             <div>
               <h1 className="fw-bold">APPELLI</h1>

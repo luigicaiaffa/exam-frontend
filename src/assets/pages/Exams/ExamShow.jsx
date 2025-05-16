@@ -5,8 +5,11 @@ import NotFound from "../NotFound";
 
 export default function ExamShow() {
   const { guest } = useDataContext();
+  
   const [exam, setExam] = useState();
+
   const { id: examId } = useParams();
+
   const navigate = useNavigate();
 
   const url = import.meta.env.VITE_API_EXAM_INDEX + "/" + examId;
@@ -53,7 +56,7 @@ export default function ExamShow() {
   return (
     <>
       <div className="card examsCard">
-        <div className="card-body p-5">
+        <div className="card-body p-4">
           <div className="d-flex justify-content-between align-items-center pageTitle mb-4">
             <h1 className="fw-bold">APPELLO</h1>
             <div className="d-flex gap-2">

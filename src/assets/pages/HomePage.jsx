@@ -1,8 +1,8 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDataContext } from "../contexts/DataContext";
 import { useState } from "react";
 
-export default function DashBoard() {
+export default function HomePage() {
   const { guest, averages } = useDataContext();
 
   const [filter, setFilter] = useState({
