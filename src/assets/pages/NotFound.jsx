@@ -5,7 +5,7 @@ export default function NotFound() {
         <h1 className="fw-bold">404</h1>
         <h2 className="fw-bold">Page Not Found</h2>
         <p className="text-secondary">
-          The page you are looking for does not exist.
+          La pagina che stai cercando non esiste.
         </p>
       </div>
     </div>

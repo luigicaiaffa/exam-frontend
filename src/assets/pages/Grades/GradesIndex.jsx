@@ -56,7 +56,7 @@ export default function GradesIndex() {
             </div>
           </div>
 
-          <div className="text-center row mb-4 row-cols-1 row-cols-md-3 justify-content-around g-3">
+          <div className="text-center row mb-4 row-cols-1 row-cols-md-3 justify-content-around g-3 mx-2">
             <div className="col py-1 averages">
               <div className="text-secondary">Media Aritmetica</div>
               <div className="fw-semibold fs-5">

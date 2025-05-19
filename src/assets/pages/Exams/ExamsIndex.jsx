@@ -25,7 +25,7 @@ export default function ExamsIndex() {
     <>
       <div className="card examsCard">
         <div className="card-body p-4">
-          <div className="d-flex justify-content-between align-items-center pageTitle mb-5">
+          <div className="d-flex justify-content-between align-items-center pageTitle mb-4">
             <div>
               <h1 className="fw-bold">APPELLI</h1>
             </div>

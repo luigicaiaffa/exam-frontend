@@ -57,7 +57,7 @@ export default function CoursesIndex() {
     <>
       <div className="card my-5 coursesSection">
         <div className="card-body">
-          <div className="d-flex justify-content-between align-items-center my-3 pageTitle">
+          <div className="d-flex justify-content-between align-items-center mb-4 pageTitle">
             <div>
               <h1 className="fw-bold">CORSI</h1>
             </div>
